@@ -1,4 +1,7 @@
 #criando a classe nó
+from typing_extensions import ParamSpec
+
+
 class No:
     def __init__(self, elemento, proximo = None, anterior = None):
         self.elemento = elemento 
@@ -29,31 +32,49 @@ class No:
     def anterior(self, anterior):
         self.anterior = anterior
     
+class Cursor:
+    def __init__(self, no = None):
+        self.no = no
+        
+    def __avancarKPosicoes(self, k):
+        pass
+
+    def __retrocederKPosicoes(self, k):
+        pass
+
+    def __irParaPrimeiro(self):
+        pass
+
+    def __irParaUltimo(self):
+        pass
 
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
         self.tamanho = 0
+        self.cursor = Cursor()
 
     def getTamanho(self):
         return self.tamanho
 
-    def InserirNaFrente(self, elemento):
+    def inserirNaFrente(self, elemento):
         if self.tamanho == 0:
             self.head = No(elemento)
             self.tail = self.head
+            self.cursor = self.head
         
         else:
             novo_no = No(elemento, self.head)
             self.head.anterior = novo_no
             self.head = novo_no
+            self.cursor.no = self.head
         
         self.tamanho += 1
 
-    def InserirNoFim(self, elemento):
+    def inserirNoFim(self, elemento):
         if self.tamanho == 0:
-            self.InserirNaFrente(elemento)
+            self.inserirNaFrente(elemento)
         
         else:
             novo_no = No(elemento, None, self.tail)
@@ -61,8 +82,8 @@ class DoublyLinkedList:
         
         self.tamanho += 1
 
-    def InserirAntesDoAtual(self):
+    def inserirAntesDoAtual(self):
         pass
 
-    def InserirAposAtual(self):
+    def inserirAposAtual(self):
         pass
