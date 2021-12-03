@@ -1,6 +1,4 @@
 #criando a classe nó
-from typing_extensions import ParamSpec
-
 
 class No:
     def __init__(self, elemento, proximo = None, anterior = None):
@@ -39,6 +37,38 @@ class DoublyLinkedList:
         self.__tail = None
         self.__tamanho = 0
         self.__cursor = None
+    
+    @property
+    def head(self):
+        return self.__head
+
+    @head.setter
+    def head(self, head):
+        self.head = head
+
+    @property
+    def tail(self):
+        return self.__tail
+
+    @tail.setter
+    def tail(self, tail):
+        self.tail = tail
+    
+    @property
+    def tamanho(self):
+        return self.__tamanho
+    
+    @tamanho.setter
+    def tamanho(self, tamanho):
+        self.__tamanho = tamanho
+    
+    @property
+    def cursor(self):
+        return self.__cursor
+    
+    @cursor.setter
+    def cursor(self, cursor):
+        self.__cursor = cursor
 
     def getTamanho(self):
         return self.__tamanho
@@ -68,10 +98,27 @@ class DoublyLinkedList:
         self.__tamanho += 1
        
     def __avancarKPosicoes(self, k):
-        pass
+        if self.__tamanho == 0:
+            raise Exception("Lista Vazia")
+
+        else:
+            for i in range(k):
+                if self.__cursor.proximo == None:
+                    raise Exception("Não há elementos para avançar")
+                else:
+                    self.__cursor = self.__cursor.proximo
+
 
     def __retrocederKPosicoes(self, k):
-        pass
+        if self.__tamanho == 0:
+            raise Exception("Lista Vazia")
+
+        else:
+            for i in range(k):
+                if self.__cursor.anterior == None:
+                    raise Exception("Não há elementos para retornar")
+                else:
+                    self.__cursor = self.__cursor.anterior
 
     def __irParaPrimeiro(self):
         primeiro = self.__head
@@ -81,7 +128,16 @@ class DoublyLinkedList:
         ultimo = self.__tail
         return ultimo
 
-    def inserirAntesDoAtual(self):
+    def inserirAntesDoAtual(self, elemento):
+        if self.__cursor == None:
+            raise Exception("Não existe elemento atual")
+        else:
+            atual = self.__cursor (3)
+            anterior = self.__cursor.anterior (2)
+            proximo = self.__cursor.proximo (4)
+
+            novo_no = No(elemento)
+            
         pass
 
     def inserirAposAtual(self):
