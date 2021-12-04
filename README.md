@@ -6,7 +6,7 @@ lista duplamente encadeada COM cursor.
 As operações públicas que precisam estar implementadas são (no mínimo):
 
 (elemento) acessarAtual() Leo e Laura
-(void) InserirAntesDoAtual ( novo ) Leo
+(void) InserirAntesDoAtual ( novo ) Leo --ok
 (void) InserirApósAtual ( novo ) Laura
 (void) inserirNoFim ( novo ) --ok
 (void) inserirNaFrente ( novo ) --ok

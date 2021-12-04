@@ -1,36 +1,27 @@
-#criando a classe nó
-
+#=========== Classe Nó ============#
 class No:
     def __init__(self, elemento, proximo = None, anterior = None):
         self.elemento = elemento 
-        self.proximo = proximo 
-        self.anterior = anterior 
+        self.__proximo = proximo 
+        self.__anterior = anterior 
 
     @property
-    def elemento(self):
-        return self.elemento
-
-    @elemento.setter
-    def elemento(self, elemento):
-        self.elemento = elemento
+    def __proximo(self):
+        return self.__proximo
+    
+    @__proximo.setter
+    def __proximo(self, proximo):
+        self.__proximo = proximo
 
     @property
-    def proximo(self):
-        return self.proximo
+    def __anterior(self):
+        return self.__anterior
     
-    @proximo.setter
-    def proximo(self, proximo):
-        self.proximo = proximo
-
-    @property
-    def anterior(self):
-        return self.anterior
+    @__anterior.setter
+    def __anterior(self, anterior):
+        self.__anterior = anterior
     
-    @anterior.setter
-    def anterior(self, anterior):
-        self.anterior = anterior
-    
-
+#=========== Classe DoublyLinkedList ============#
 class DoublyLinkedList:
     def __init__(self):
         self.__head = None
@@ -74,7 +65,7 @@ class DoublyLinkedList:
         return self.__tamanho
 
     def inserirNaFrente(self, elemento):
-        if self.__tamanho == 0:
+        if self.Vazia() == True:
             self.__head = No(elemento)
             self.__tail = self.__head
             self.__cursor = self.__head
@@ -88,7 +79,7 @@ class DoublyLinkedList:
         self.__tamanho += 1
 
     def inserirNoFim(self, elemento):
-        if self.__tamanho == 0:
+        if self.Vazia() == True:
             self.inserirNaFrente(elemento)
         
         else:
@@ -98,7 +89,7 @@ class DoublyLinkedList:
         self.__tamanho += 1
        
     def __avancarKPosicoes(self, k):
-        if self.__tamanho == 0:
+        if self.Vazia() == True:
             raise Exception("Lista Vazia")
 
         else:
@@ -110,7 +101,7 @@ class DoublyLinkedList:
 
 
     def __retrocederKPosicoes(self, k):
-        if self.__tamanho == 0:
+        if self.Vazia() == True:
             raise Exception("Lista Vazia")
 
         else:
@@ -127,30 +118,45 @@ class DoublyLinkedList:
     def __irParaUltimo(self):
         ultimo = self.__tail
         return ultimo
+    
+    def acessarAtual(self):
+        return self.__cursor.elemento 
 
     def inserirAntesDoAtual(self, elemento):
         if self.__cursor == None:
             raise Exception("Não existe elemento atual")
         else:
-            atual = self.__cursor (3)
-            anterior = self.__cursor.anterior (2)
-            proximo = self.__cursor.proximo (4)
-
-            novo_no = No(elemento)
-            
-        pass
+            atual = self.__cursor 
+            anterior = self.__cursor.anterior 
+            novo_no = No(elemento, atual, anterior)
+            self.__tamanho += 1
 
     def inserirAposAtual(self):
         pass
 
-    def inserirNaPosicao(self):
-        pass
+    def inserirNaPosicao(self, k, novo_elemento = No):
+        if k < (self.__tamanho//2):
+            self.__cursor.__irParaPrimeiro
+            self.__cursor.__avancarKPosicoes(k)
+            self.__cursor = novo_elemento
+            
+        else:
+            self.__cursor.__irParaUltimo
+            self.__cursor.__retrocederKPosicoes(k)
+            self.__cursor = novo_elemento
+        
+        self.__tamanho += 1
 
     def ExcluirAtual(self):
         pass
 
     def ExcluirPrim(self):
-        pass
+        if self.Vazia() == True:
+            raise Exception("Não existem elementos")
+        else:
+            self.__cursor.__irParaPrimeiro
+            self.__cursor.elemento = None
+            self.__tamanho -= 1
 
     def ExcluirUlt(self):
         pass
@@ -158,7 +164,18 @@ class DoublyLinkedList:
     def ExcluirElem(chave):
         pass
 
-    def ExlcuirDaPos(k):
+    def ExlcuirDaPos(self, k):
+        if k < (self.__tamanho//2):
+            self.__cursor.__irParaPrimeiro
+            self.__cursor.__avancarKPosicoes(k)
+            self.__cursor = None
+            
+        else:
+            self.__cursor.__irParaUltimo
+            self.__cursor.__retrocederKPosicoes(k)
+            self.__cursor = None
+        
+        self.__tamanho -= 1
         pass
     
     def Buscar(chave):
